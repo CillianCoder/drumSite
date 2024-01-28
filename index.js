@@ -7,6 +7,7 @@ for (var i = 0; i < noOfDrumButtons; i++) {
         var soundMake = this.innerHTML;
 
         makeSound(soundMake);
+        buttonAnimation(soundMake);
     });
 
 }
@@ -17,13 +18,14 @@ document.addEventListener("keypress", function (event) {
     var buttonPress = event.key;
 
     makeSound(buttonPress);
+    buttonAnimation(buttonPress);
 
 })
 
 //play sound
 
-function makeSound(click){
-    
+function makeSound(click) {
+
     switch (click) {
         case "w":
             var audio = new Audio('sounds/tom-1.mp3');
@@ -56,4 +58,15 @@ function makeSound(click){
 
         default:
     };
+}
+
+//animation when clicked
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    }, 250);
 }
